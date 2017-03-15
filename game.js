@@ -6,6 +6,7 @@ const WIDTH = 500;
 var context;
 var x = 0;
 var y = 0;
+var cont = 0;
 
 window.onload = function() {
 
@@ -22,9 +23,10 @@ function startGame() {
 
   var canvasUpdate = setInterval(function (x, y, h, w) {
 
-    document.addEventListener("keydown", function(event) {        //imprime msg caso tecla 'para baixo' for pressionado
-      if (event.keyCode == 40) { console.log('Down key pressed!'); }
-    });
+    // document.addEventListener("keydown", function(event) {        //imprime msg caso tecla 'para baixo' for pressionado
+    //   if (event.keyCode == 40) { console.log('Down key pressed!'); }
+    // });
+    keyPressedHandler();
 
     if (this.x == HEIGHT) {    //atingiu o final do eixo x
       clearInterval(canvasUpdate);
@@ -47,6 +49,30 @@ function startGame() {
 
 function keyPressedHandler() {
 
+  document.addEventListener("keydown", function(event) {
+
+    switch (event.keyCode) {
+      case 40:
+        console.log('Down');
+        setInterval(null, 1000);
+        y += 20;
+        break;
+
+      case 39:
+        console.log('Right');
+        break;
+
+      case 38:
+        console.log('Up');
+        break;
+
+      case 37:
+        console.log('Left');
+        break;
+
+    }
+
+  });
 }
 
 
