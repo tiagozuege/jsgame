@@ -45,6 +45,9 @@ function startGame() {
 
 }
 
+function keyPressedHandler() {
+
+}
 
 
 // function gameComponent(width, heigth, color, x, y, type) {
