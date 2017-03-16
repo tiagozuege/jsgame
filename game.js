@@ -7,6 +7,7 @@ var context;
 var x = 0;
 var y = 0;
 var cont = 0;
+var direction = '';
 
 window.onload = function() {
 
@@ -23,24 +24,30 @@ function startGame() {
 
   var canvasUpdate = setInterval(function (x, y, h, w) {
 
-    // document.addEventListener("keydown", function(event) {        //imprime msg caso tecla 'para baixo' for pressionado
-    //   if (event.keyCode == 40) { console.log('Down key pressed!'); }
-    // });
-    keyPressedHandler();
+    direction = keyPressedHandler();
+    // console.log(direction);
 
     if (this.x == HEIGHT) {    //atingiu o final do eixo x
       clearInterval(canvasUpdate);
       alert('Game Over!');
-      // console.log(this.x);
-      // context.clearRect(this.x, this.y, 15, 15);
-      // this.x = 0;
-      // this.y += 10;
+    }
+    if (this.y == WIDTH) {
+      clearInterval(canvasUpdate);
+      alert('Game Over!');
     }
 
     context.clearRect( (this.x - 10), this.y, 15, 15);  //limpa o 'x' anterior do canvas
     context.fillRect(this.x, this.y, 15, 15);
-    this.x += 10;
-    // this.y += 10;
+    if (direction == 'right') {
+      this.x += 10;
+      this.y = 0;
+    }
+    if (direction == 'down') {
+      this.x = 0;
+      this.y -= 10;
+      console.log('x = ' + this.x);
+      console.log('y = ' + this.y);
+    }
 
   }, 100);   //diminuir para que o canvas renderize mais rápido (dificuldade)
 
@@ -53,12 +60,14 @@ function keyPressedHandler() {
 
     switch (event.keyCode) {
       case 40:
-        console.log('Down');
-        setInterval(null, 1000);
-        y += 20;
+        for (var i = 0; i < 1000; i++);
+        direction = 'down';
+        // y += 10;
         break;
 
       case 39:
+        for (var i = 0; i < 1000; i++);
+        direction = 'right';
         console.log('Right');
         break;
 
@@ -69,10 +78,11 @@ function keyPressedHandler() {
       case 37:
         console.log('Left');
         break;
-
     }
 
   });
+
+  return direction;
 }
 
 
