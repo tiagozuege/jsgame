@@ -5,7 +5,7 @@ const WIDTH = 500;
 
 var context;
 var x = 0;
-var y = 0;
+var y = 250;
 var cont = 0;
 var direction = '';
 
@@ -40,11 +40,11 @@ function startGame() {
     context.fillRect(this.x, this.y, 15, 15);
     if (direction == 'right') {
       this.x += 10;
-      this.y = 0;
+      // this.y = 0;
     }
     if (direction == 'down') {
-      this.x = 0;
-      this.y -= 10;
+      // this.x = 0;
+      this.y += 10;
       console.log('x = ' + this.x);
       console.log('y = ' + this.y);
     }
@@ -84,16 +84,3 @@ function keyPressedHandler() {
 
   return direction;
 }
-
-
-// function gameComponent(width, heigth, color, x, y, type) {
-//   this.width = width;
-//   this.height = height;
-//   this.color = color;
-//   this.x = x;
-//   this.y = y;
-//
-//   this.draw = function () {
-//     ctx =
-//   }
-// }
