@@ -4,8 +4,8 @@ const HEIGHT = 500;
 const WIDTH = 500;
 
 var context;
-var x = 0;
-var y = 250;
+var x = 1;
+var y = 20;
 var cont = 0;
 var direction = '';
 
@@ -27,26 +27,29 @@ function startGame() {
     direction = keyPressedHandler();
     // console.log(direction);
 
-    if (this.x == HEIGHT) {    //atingiu o final do eixo x
+    if (this.x >= HEIGHT || this.x <= 0) {    //atingiu o final do eixo x
       clearInterval(canvasUpdate);
       alert('Game Over!');
     }
-    if (this.y == WIDTH) {
+    if (this.y >= WIDTH || this.y <= 0) {
       clearInterval(canvasUpdate);
       alert('Game Over!');
     }
 
     context.clearRect( (this.x - 10), this.y, 15, 15);  //limpa o 'x' anterior do canvas
     context.fillRect(this.x, this.y, 15, 15);
+
     if (direction == 'right') {
       this.x += 10;
-      // this.y = 0;
     }
+
+    if (direction == 'left') {
+      this.x -= 10;
+      console.log('x: ' + this.x);
+    }
+
     if (direction == 'down') {
-      // this.x = 0;
       this.y += 10;
-      console.log('x = ' + this.x);
-      console.log('y = ' + this.y);
     }
 
   }, 100);   //diminuir para que o canvas renderize mais rápido (dificuldade)
@@ -62,7 +65,7 @@ function keyPressedHandler() {
       case 40:
         for (var i = 0; i < 1000; i++);
         direction = 'down';
-        // y += 10;
+        console.log('Down');
         break;
 
       case 39:
@@ -72,10 +75,12 @@ function keyPressedHandler() {
         break;
 
       case 38:
+        direction = 'up';
         console.log('Up');
         break;
 
       case 37:
+        direction = 'left';
         console.log('Left');
         break;
     }
