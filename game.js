@@ -36,21 +36,35 @@ function startGame() {
       alert('Game Over!');
     }
 
-    context.clearRect( (this.x - 10), this.y, 15, 15);  //limpa o 'x' anterior do canvas
-    context.fillRect(this.x, this.y, 15, 15);
+    //context.clearRect( (this.x - 10), this.y, 15, 15);  //limpa o 'x' anterior do canvas
+    // context.fillRect(this.x, this.y, 15, 15);
+
+    //directions:
 
     if (direction == 'right') {
       this.x += 10;
+      context.clearRect( (this.x - 10), this.y, 15, 15);
     }
 
     if (direction == 'left') {
       this.x -= 10;
-      console.log('x: ' + this.x);
+      context.clearRect( (this.x + 10), this.y, 15, 15);
+
+    }
+
+    if (direction == 'up') {
+      this.y -= 10;
+      context.clearRect(this.x, (this.y + 10), 15, 15);
+
     }
 
     if (direction == 'down') {
       this.y += 10;
+      context.clearRect(this.x, (this.y - 10), 15, 15);
+
     }
+
+    context.fillRect(this.x, this.y, 15, 15);
 
   }, 100);   //diminuir para que o canvas renderize mais rápido (dificuldade)
 
@@ -63,13 +77,13 @@ function keyPressedHandler() {
 
     switch (event.keyCode) {
       case 40:
-        for (var i = 0; i < 1000; i++);
+        // for (var i = 0; i < 1000; i++);
         direction = 'down';
         console.log('Down');
         break;
 
       case 39:
-        for (var i = 0; i < 1000; i++);
+        // for (var i = 0; i < 1000; i++);
         direction = 'right';
         console.log('Right');
         break;
